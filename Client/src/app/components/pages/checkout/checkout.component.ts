@@ -18,6 +18,8 @@ export class CheckoutComponent implements OnInit {
     public cartBox = '';
     public totalPrice = 0;
     public order = new OrderModel();
+    public orders=[];
+    public occupiedDates=[];
     public orderForm = this.order;
     public searchTerm = [];
     public cities = [
@@ -41,6 +43,16 @@ export class CheckoutComponent implements OnInit {
     ngOnInit() {
         store.subscribe(() => {
             this.user = store.getState().user; // * -user ready - get active cart:
+                    this.orders = store.getState().orders;
+               
+               for (let i = 0; i < this.orders.length; i++) {
+                this.occupiedDates.push(this.orders[i].shippingDate)
+                   
+               }
+                console.log("oc_orders: " + JSON.stringify(this.occupiedDates))
+              
+               //     this.occupiedDates = this.orders
+                
             if (this.user && !this.user.isAdmin) {
                 this.userID = + this.user.userID
                 this.fetchCart(this.user.userID);
@@ -49,7 +61,7 @@ export class CheckoutComponent implements OnInit {
 
         });
         this.userCart = store.getState().cartItems;
-
+        this.occupiedDates = store.getState().orders;
 
     }
     // public removeItem(id) {

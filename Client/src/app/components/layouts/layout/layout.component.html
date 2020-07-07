@@ -23,12 +23,10 @@
 </mat-toolbar>
 <mat-toolbar>
     <button type="button" *ngIf="user" mat-raised-button color="accent" routerLink="shop">
-        <i class="material-icons">shop</i> 
-        {{ user ? "Resume" : "Start" }} Shopping
-        
-    </button>
-    <button type="button" *ngIf="user" color="primary" id="layoutButton" mat-raised-button color="basic" (click)="logout()"> Logout </button>
-    <button type="button" id="layoutButton" mat-raised-button color="basic"  (click)="resize()">
+        <i class="material-icons">shop</i> {{ user ? "Resume" : "Start" }} Shopping </button>
+    <button type="button" *ngIf="user" color="primary" id="layoutButton" mat-raised-button color="basic"
+        (click)="logout()"> Logout </button>
+    <button type="button" id="layoutButton" mat-raised-button color="basic" (click)="resize()">
         <i class="material-icons">compare_arrows</i>
     </button>
     <span class="spacer"></span>
@@ -73,35 +71,29 @@
                     <mat-chip color="accent" selected>{{ orders.length }} Orders </mat-chip>
                 </mat-chip-list>
                 <br />
-                <!-- <div *ngFor="let c of userCart">
-                    <span> cart #: {{ c.cartID }} </span>
-                </div> -->
-                <div class="card message message1"> //* if user has an open cart with at least one item. [!cartEmpty]
+                <div class="card message message3" *ngIf="firstVisit==0">
+                    <!-- new user - [firstVisit] = 0/1 ~ check -->
+                    <h4>Wellcome to Web Store! </h4>
+                    <p>Since this is your <b>first visit </b> we'll grant you a bonus upon your first purchase.</p>
+                </div>
+                <div class="card message message1" *ngIf="userOrder.length>0">
+                    <!--  if user has an open cart with at least one item. -->
                     <br />
-                    <span> you left an open cart from: <br> {{ cartDate }} </span>
-                    <br> SubTotal: {{totalPrice}} $ </div>
-                
-                <div class="card message message2">  //* if user has an empty cart and made an order - display order [cartEmpty]
+                    <p> you left an open cart from: <br> {{ cartDate }} </p>
+                    <br> SubTotal: {{totalPrice}} $
+                </div>
+                <div class="card message message2" *ngIf="userOrder.length<1">
+                    <!--  if user has an empty cart and made an order - display order -->
                     <br />
-                    <span>Your last order:  <b> order item name
-
-                    </b> 
-                         <br> order date </span>
-                   </div>
-                    <div class="card message message3">  //* new user - [firstVisit] = 0/1 ~ check
-                        <br />
-                        <h4>Wellcome to Web Store! </h4>
-                        <p>Since this is your <b>first visit </b> we'll grant you a bonus upon your first purchase.</p>
-                    </div>
-                    <button type="button" *ngIf="user" mat-raised-button color="accent" routerLink="shop">
-                        <i class="material-icons">shop</i> 
-                        {{ user ? "Resume" : "Start" }} Shopping
-                        
-                    </button>
-                    </div>
-               
+                    <p >Your last order: *itemName* <br> order item name <br>
+                        *orderTime* </p>
+                </div>
+              
+                <button type="button" *ngIf="user" mat-raised-button color="accent" routerLink="shop">
+                    <i class="material-icons">shop</i> {{ user ? "Resume" : "Start" }} Shopping </button>
             </div>
-                <!--Sidebar-2-->
+        </div>
+        <!--Sidebar-2-->
     </mat-sidenav-content>
 </mat-sidenav-container>
 <app-footer></app-footer>

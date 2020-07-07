@@ -29,6 +29,18 @@ router.get('/item/:id', async (request, response) => {
      }
  });
 
+ //(get) http://localhost:3000/api/orders/user/:user //? get one (last) order of a specific user
+router.get('/user/:user', async (request, response) => {
+    // console.log("hi")
+     const user = +request.params.user
+     try {
+         const order = await orderLogic.getOneOrderFromUser(user);
+         response.json(order);
+     } catch (error) {
+         sendError(response, error);
+     }
+ });
+
  
 // POST  localhost:3000/api/orders/new
 router.post('/new/', async (request, response) => {

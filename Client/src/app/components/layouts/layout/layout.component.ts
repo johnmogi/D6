@@ -29,7 +29,7 @@ export class LayoutComponent implements OnInit {
   public cartLoop: Boolean = false;
   public user = new AuthModel();
   public firstName: String;
-  public firstVisit: String;
+  public firstVisit: Number;
   public visitCounter: Boolean = false;
   public isAdmin: Boolean = false;
   public totalPrice = 0;
@@ -50,13 +50,13 @@ export class LayoutComponent implements OnInit {
         this.isAdmin = false;
 
         if (!this.userOrder) {
-          this.fetchOrder(this.user.userID);
+         this.fetchOrder(this.user.userID);
         }
         if (!this.userCart) {
           this.fetchCart(this.user.userID);
         }
         this.firstName = this.user.firstName;
-        this.firstVisit = this.user.firstVisit;
+        this.firstVisit = +this.user.firstVisit;
         this.visitCounter = true;
       }
       
@@ -138,12 +138,11 @@ export class LayoutComponent implements OnInit {
       (err) => alert(err.message)
     );
   }
-  public fetchOrder(id) {
+  public fetchOrder(userID) {
 
-    this.orderService.getOneOrderAsync(id).subscribe(
+    this.orderService.getOneUserOrderAsync(userID).subscribe(
       (res) => {
-        this.userOrder[0] = res[0];
-        //  this.cartDate = this.userCart[0].cartTime;
+        this.userOrder[0] = res[-1]; //setting to last order
         console.table("order, master: ", this.userOrder)
       },
       (err) => err.message
