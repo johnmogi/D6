@@ -12,7 +12,6 @@ import {AuthModel} from 'src/app/models/Auth-model';
 @Component({selector: 'app-item', templateUrl: './item.component.html', styleUrls: ['./item.css']})
 export class ItemComponent implements OnInit {
     public user = new AuthModel();
-
     public product = new ProductModel();
     public productID?: Number;
     public name : String = '';
@@ -20,15 +19,14 @@ export class ItemComponent implements OnInit {
     public imageUrl : String = '';
     public itemDescription : String = '';
     public catID : String = '';
-    public addItem = {
-        amount: 1,
-        productID: '',
-        cartId: 0
-    };
-
     public newCart : CartModel = new CartModel();
     public userCart = [];
     public userCartItems = [];
+                public addItem = {
+                    amount: 1,
+                    productID: '',
+                    cartId: 0
+                };
 
 
     constructor(private myActivatedRoute : ActivatedRoute, private shopService : ShopService, private cartService : CartService, private router : Router) {}
@@ -40,13 +38,10 @@ export class ItemComponent implements OnInit {
                 this.userCart = store.getState().cart;
                 if (this.user) {
                     this.fetchCart(this.user.userID);
-
                 }
-
             });
             this.userCart = store.getState().cart;
             this.user = store.getState().user;
-
 
             // * Fetch this item details:
             this.product = await this.shopService.getOneProductAsync(id);
@@ -62,15 +57,10 @@ export class ItemComponent implements OnInit {
     }
 
     public addToCart(productID) { // setting default amount to 1 (UX):
-      
-     console.table('userCart: ' + JSON.stringify(this.userCart[0].cartID));
-
-      //whm
-
+//     console.table('user: ' + JSON.stringify(this.user.userID));
+this.fetchCart(this.user.userID);
         this.addItem.cartId = + this.userCart[0].cartID;
-
         this.addItem.productID = productID;
-        // console.table('cart: ' + JSON.stringify(this.addItem));
         this.cartService.addItemToCart(this.addItem, this.addItem.cartId).subscribe((res) => {
             const action = {
                 type: ActionType.addItemCart,
@@ -89,11 +79,5 @@ export class ItemComponent implements OnInit {
          //   this.fetchCartItems(res[0].cartID);
         }, (err) => err.message);
     }
-    // public fetchCartItems(id) {
-    //     this.cartService.findCart(id).subscribe((res) => {
-    //         this.userCart[0] = res[0];
-    //         console.table('cart nginit: ' + JSON.stringify(this.userCart[0].cartID));
-
-    //     }, (err) => err.message);
-    // }
+  
 }

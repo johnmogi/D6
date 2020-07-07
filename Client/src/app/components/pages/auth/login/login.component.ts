@@ -83,7 +83,7 @@ public checkForCart(user){
     this.cartService.findCart(user.userID).subscribe(
         (res) => {
             this.userCart[0] = res[0];
-            console.table('cart:' + JSON.stringify(this.userCart[0]));
+         //   console.table('cart:' + JSON.stringify(this.userCart[0]));
             // this.cartDate = this.userCart[0].cartTime;
             // this.fetchCartItems(res[0].cartID);
         },

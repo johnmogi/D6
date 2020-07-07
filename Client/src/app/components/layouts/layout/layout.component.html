@@ -28,7 +28,7 @@
         
     </button>
     <button type="button" *ngIf="user" color="primary" id="layoutButton" mat-raised-button color="basic" (click)="logout()"> Logout </button>
-    <button type="button" id="layoutButton" mat-raised-button color="basic" (click)="resize()">
+    <button type="button" id="layoutButton" mat-raised-button color="basic" disabled="" (click)="resize">
         <i class="material-icons">compare_arrows</i>
     </button>
     <span class="spacer"></span>
@@ -54,11 +54,11 @@
         <br>
         <div class="row">
             <!--Sidebar-1-->
-            <div class="card col-3 grey" *ngIf="size">
+            <div class="card col-2 grey" *ngIf="size">
                 <app-login *ngIf="!user"></app-login>
                 <app-cart *ngIf="user"></app-cart>
             </div>
-            <div class="card col-2 grey" color="accent" *ngIf="!size">
+            <div class="card col-3 grey" color="accent" *ngIf="!size">
                 <app-login *ngIf="!user"></app-login>
                 <app-cart *ngIf="user"></app-cart>
             </div>

@@ -19,4 +19,7 @@ public getAllorders() : Observable < OrderModel[] > {
 public getOneOrderAsync(id : Number): Observable < OrderModel[] > {
   return this.http.get<OrderModel[]>(this.api + 'item/' + id)
 }
+public addOrder(orderForm: any) {
+  return this.http.post<any>(this.api + 'new', orderForm);
+}
 }

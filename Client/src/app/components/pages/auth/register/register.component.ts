@@ -24,7 +24,8 @@ public errorBox = '';
     idTaken: 'ID already exists',
     email: 'make sure to fill Email',
     emailTaken : 'Email already exists',
-    passwords: 'make sure to fill password',
+    passwords: 'make sure to fill password'
+
   }; 
   public cities = [
     'Metula',
@@ -44,13 +45,17 @@ public errorBox = '';
   ngOnInit(): void {
   }
   public checkValid(){
-    if(!this.addUser.id){
+    if(!this.addUser.id || this.addUser.id.length <7 ){
       this.errorBox = this.errorMessages.id
       return false;
 
     }
     if(!this.addUser.username_email){
       this.errorBox = this.errorMessages.email
+      return false;
+    }
+    if(!this.addUser.password || this.addUser.password.length <2){
+      this.errorBox = this.errorMessages.passwords
       return false;
     }
     if(this.addUser.password != this.confPass){
@@ -77,7 +82,7 @@ public async checkUser(){
       this.validated1 = true;
       return 
     }
-    alert(res.message)
+   
     this.validated1 = false;
 
     },

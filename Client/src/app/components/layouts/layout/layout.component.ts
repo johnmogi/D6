@@ -91,6 +91,7 @@ export class LayoutComponent implements OnInit {
     this.products = store.getState().products;
     this.orders = store.getState().orders;
   } // ngonint
+  ngAfterViewChecked(){}
   public resize() {
     this.size = !this.size;
   }

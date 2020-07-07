@@ -1,5 +1,7 @@
 export class OrderModel {
     public constructor(
+    public clientID?: Number,
+    public cartID?: Number,
     public orderId?: String,
     public subTotal?: Number,
     public shippingCity?: String,

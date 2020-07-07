@@ -4,7 +4,7 @@
       <ng-template matStepLabel>Create account : Check id and email</ng-template>
       <mat-form-field>
         <mat-label>Identification</mat-label>
-        <input matInput name="id" #idIn='ngModel' minlength="1" [(ngModel)]="addUser.id" placeholder="Identification"
+        <input matInput name="id" #idIn='ngModel' minlength="8" [(ngModel)]="addUser.id" placeholder="Identification"
           required>
         <mat-error *ngIf="idIn"> 8-9 numbers Identification is <strong>required</strong>
         </mat-error>
@@ -12,7 +12,7 @@
       <br/>
       <mat-form-field class="example-full-width">
         <mat-label>Email</mat-label>
-        <input matInput #emailIn='ngModel' minlength="1" placeholder="Ex. pat@example.com" name="username_email"
+        <input matInput #emailIn='ngModel' minlength="4" placeholder="Ex. pat@example.com" name="username_email"
           [(ngModel)]="addUser.username_email" required>
         <mat-hint>Your Email as your User Name</mat-hint>
         <mat-error *ngIf="emailIn"> Please enter a valid email address </mat-error>
@@ -31,7 +31,7 @@
       <br/>
       <mat-form-field>
         <mat-label>Confirm Password</mat-label>
-        <input matInput type="password" name="conf_password" #confPassIn='ngModel' minlength="1" [(ngModel)]="confPass"
+        <input matInput type="password" name="conf_password" #confPassIn='ngModel' minlength="3" [(ngModel)]="confPass"
          placeholder="Confirm password" required>
         <mat-error *ngIf="passIn"> passwords Do not match </mat-error>
         <mat-error *ngIf="confPassIn.touched && confPassIn.value !== passIn.value">{{ errorMessages }} passwords Do

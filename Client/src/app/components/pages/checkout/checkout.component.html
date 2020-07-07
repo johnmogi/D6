@@ -1,3 +1,11 @@
+<mat-form-field appearance="fill">
+  <input matInput placeholder="Search Item" name="term" id="term" [(ngModel)]="searchTerm" minlength="1"
+    required />
+  <button mat-button matSuffix mat-icon-button id="searchbut" aria-label="Search" (click)="search(searchTerm)">
+    <i class="material-icons">search </i>
+  </button>
+</mat-form-field>
+
 <div class="row">
 
 
@@ -5,16 +13,18 @@
 <h4 *ngIf="cartBox">{{ cartBox }}</h4>
 <table>
     <thead>
-        <td>#</td>
-        <td>image</td>
+        <td>item name</td>
+        <!-- <td>image</td> -->
+        <td>catalogue #</td>
         <td>quantity</td>
         <td>total</td>
  
     </thead>
     <tbody>
-        <tr *ngFor="let c of userCart">
-          <td *ngIf="c.imageUrl"> <img mat-card-image src="../../../../assets/images/{{ c.imageUrl }}" alt=" {{ c.imageUrl }}"
-            style="max-width:10%;"></td>
+        <tr *ngFor="let c of userCartItems">
+          <!-- <td *ngIf="c.imageUrl"> <img mat-card-image src="../../../../assets/images/{{ c.imageUrl }}" alt=" {{ c.imageUrl }}"
+            style="max-width:10%;"></td> -->
+            <td>{{ c.itemName }}</td>
             <td>{{ c.productID }}</td>
             <td>{{ c.amount }}</td>
             <td>{{ c.totalPrice }}</td>
@@ -50,7 +60,7 @@
       <br> <br>
       <mat-form-field class="full-width" appearance="fill">
         <mat-label>Choose a shipping date</mat-label>
-        <input matInput [matDatepicker]="picker" name="shippingDate" [(ngModel)]="orderForm.shippingDate">
+        <input type="text" matInput [matDatepicker]="picker" name="shippingDate" [(ngModel)]="orderForm.shippingDate">
         <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
         <mat-datepicker [dateClass]="dateClass" #picker></mat-datepicker>
       </mat-form-field>
@@ -60,8 +70,8 @@
       
         <mat-form-field class="full-width" appearance="fill">
             <mat-label>Credit Card - last 4 digits</mat-label>
-            <input matInput type="password" name="paymentDigits" #paymentDigitsIn='ngModel' minlength="4" [(ngModel)]="orderForm.paymentDigits"
-             placeholder="Confirm password" required>
+            <input matInput type="number" name="paymentDigits" #paymentDigitsIn='ngModel' minlength="4" [(ngModel)]="orderForm.paymentDigits"
+             placeholder="credit card last 4 digits" required>
             <mat-error *ngIf="paymentDigitsIn">your street address is too short </mat-error>
 
           </mat-form-field>

@@ -29,5 +29,28 @@ router.get('/item/:id', async (request, response) => {
      }
  });
 
+ 
+// POST  localhost:3000/api/orders/new
+router.post('/new/', async (request, response) => {
+    const time = new Date();
+    const year = time.getFullYear();
+    const month = time.getMonth() + 1;
+    const day = time.getDate();
+    const hours = time.getHours();
+    const minutes = time.getMinutes();
+    const seconds = time.getSeconds();
+    const nowTime = `${year}-${month}-${day} ${hours}:${minutes}:${seconds}`;
+
+    try {
+        const order = request.body;
+        order.orderTime = nowTime.toString();
+
+        const addedOrder = await orderLogic.addOrder(order);
+        response.json(addedOrder);
+    } catch (error) {
+        sendError(response, error);
+    }
+});
+
 // INSERT INTO`clientorder`(`orderID`, `clientID`, `cartID`, `subTotal`, `shippingCity`, `shippingStreet`, `shippingDate`, `orderTime`, `paymentDigits`) VALUES(NULL, '25', '9', '1000', 'Barcelona', 'a', '2020-07-01', '2020-07-01', '1234');
 module.exports = router;

@@ -3,16 +3,16 @@
 <!-- <h6 *ngIf="usercart.length =0">your shopping cart is empty... go ahead and load some items...</h6> -->
 <table *ngIf="userCartItems">
     <thead>
-        <td> </td>
+        <td>name </td>
         <td>quantity</td>
         <td>total</td>
-        <td>remove</td>
+        <td></td>
     </thead>
-    <tbody>
+    <tbody [@listAnimation]="userCartItems.length">
         <tr *ngFor="let c of userCartItems">
             <!-- <td *ngIf="c.imageUrl"> <img mat-card-image src="../../../../assets/images/{{ c.imageUrl }}" alt=" {{ c.imageUrl }}"
                 style="max-width:80%;"></td> -->
-            <td>{{ c.productID }}</td>
+            <td>{{ c.itemName }}</td>
             <td>{{ c.amount }}</td>
             <td>{{ c.totalPrice }}</td>
             <td>

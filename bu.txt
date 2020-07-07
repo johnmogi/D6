@@ -1,0 +1,14 @@
+    if (this.userCartItems.length < 1) {
+      this.cartLoad = false;
+      this.userCart = [];
+      this.cartBox = 'Start filling up your cart by adding items...';
+    }
+
+    if (this.userCartItems.length > 0) {
+      this.cartLoad = true;
+      this.cartBox =
+        'you left an un-saved cart... here are your previous items';
+      this.sumTotalPrice(this.userCartItems);
+    }
+
+    was in cart - but no good
