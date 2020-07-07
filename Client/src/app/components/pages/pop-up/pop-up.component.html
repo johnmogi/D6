@@ -1,26 +1,49 @@
 <mat-card class="card">
-    <mat-card-header>
-      <div mat-card-avatar class="header-image">
-        <i class="material-icons ">local_offer</i>
-      </div>
-      <mat-card-title>{{ name}}</mat-card-title>
-      <mat-card-subtitle>Price: {{ price }}</mat-card-subtitle>
-    </mat-card-header>
-    <img mat-card-image *ngIf="imageUrl" src="../../../../assets/images/{{ imageUrl }}" alt=" {{ imageUrl }}">
-    <mat-card-content> Description: <p> {{ itemDescription }} </p>
-    </mat-card-content>
-    <mat-card-actions>
-      <form class="row" novalidate="novalidate">
-        <mat-form-field appearance="fill" color="accent" class="col">
-          <mat-label>Desired Amount</mat-label>
-          <input matInput type="number" placeholder="1" value="1" #amountIn="ngModel" [(ngModel)]='addItem.amount'
-            name="amount" min="1" required>
-        </mat-form-field>
-        <button type="submit" mat-raised-button type="button" color="accent" class="col" value="Add"
-          (click)="addToCart(productID)">
-          <i class="material-icons ">local_grocery_store</i> Add To Cart </button>
-      </form>
-      <a mat-raised-button routerLink="/shop">Back to Shop </a>
-    </mat-card-actions>
-  </mat-card>
-  
+  <mat-card-header>
+    <div mat-card-avatar class="header-image">
+      <i class="material-icons">local_offer</i>
+    </div>
+    <mat-card-title>{{ name }}</mat-card-title>
+    <mat-card-subtitle>Price: {{ price }}</mat-card-subtitle>
+  </mat-card-header>
+  <img
+    mat-card-image
+    *ngIf="imageUrl"
+    src="../../../../assets/images/{{ imageUrl }}"
+    alt=" {{ imageUrl }}"
+  />
+  <mat-card-content>
+    Description:
+    <p>{{ itemDescription }}</p>
+  </mat-card-content>
+  <mat-card-actions>
+    <form class="row" novalidate="novalidate">
+      <mat-form-field appearance="fill" color="accent" class="col">
+        <mat-label>Desired Amount</mat-label>
+        <input
+          matInput
+          type="number"
+          placeholder="1"
+          value="1"
+          #amountIn="ngModel"
+          [(ngModel)]="addItem.amount"
+          name="amount"
+          min="1"
+          required
+        />
+      </mat-form-field>
+      <button
+        type="submit"
+        mat-raised-button
+        type="button"
+        color="accent"
+        class="col"
+        value="Add"
+        (click)="addToCart(productID)"
+      >
+        <i class="material-icons">local_grocery_store</i> Add To Cart
+      </button>
+    </form>
+    <a mat-raised-button routerLink="/shop">Back to Shop </a>
+  </mat-card-actions>
+</mat-card>

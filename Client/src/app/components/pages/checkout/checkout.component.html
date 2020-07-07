@@ -1,83 +1,123 @@
 <mat-form-field appearance="fill">
-  <input matInput placeholder="Search Item" name="term" id="term" [(ngModel)]="searchTerm" minlength="1"
-    required />
-  <button mat-button matSuffix mat-icon-button id="searchbut" aria-label="Search" (click)="search(searchTerm)">
+  <input
+    matInput
+    placeholder="Search Item"
+    name="term"
+    id="term"
+    [(ngModel)]="searchTerm"
+    minlength="1"
+    required
+  />
+  <button
+    mat-button
+    matSuffix
+    mat-icon-button
+    id="searchbut"
+    aria-label="Search"
+    (click)="search(searchTerm)"
+  >
     <i class="material-icons">search </i>
   </button>
 </mat-form-field>
 
 <div class="row">
-
-
-    <div class="col">
-<h4 *ngIf="cartBox">{{ cartBox }}</h4>
-<table>
-    <thead>
+  <div class="col">
+    <h4 *ngIf="cartBox">{{ cartBox }}</h4>
+    <table>
+      <thead>
         <td>item name</td>
         <!-- <td>image</td> -->
         <td>catalogue #</td>
         <td>quantity</td>
         <td>total</td>
- 
-    </thead>
-    <tbody>
+      </thead>
+      <tbody>
         <tr *ngFor="let c of userCartItems">
           <!-- <td *ngIf="c.imageUrl"> <img mat-card-image src="../../../../assets/images/{{ c.imageUrl }}" alt=" {{ c.imageUrl }}"
             style="max-width:10%;"></td> -->
-            <td>{{ c.itemName }}</td>
-            <td>{{ c.productID }}</td>
-            <td>{{ c.amount }}</td>
-            <td>{{ c.totalPrice }}</td>
-        
+          <td>{{ c.itemName }}</td>
+          <td>{{ c.productID }}</td>
+          <td>{{ c.amount }}</td>
+          <td>{{ c.totalPrice }}</td>
         </tr>
-    </tbody>
-</table>
-<section class="bottom-cart row">
-    <h5 class="col">SubTotal :
-        {{ totalPrice }}</h5>
-</section>
-</div>
-<div class="col">
-    <h3> Shipping details:</h3>
+      </tbody>
+    </table>
+    <section class="bottom-cart row">
+      <h5 class="col">SubTotal : {{ totalPrice }}</h5>
+    </section>
+  </div>
+  <div class="col">
+    <h3>Shipping details:</h3>
     <form>
-        <mat-form-field class="full-width" appearance="fill">
+      <mat-form-field class="full-width" appearance="fill">
         <mat-label>City:</mat-label>
-        <mat-select #cityIn='ngModel' [(ngModel)]="orderForm.shippingCity" name="city" required>
+        <mat-select
+          #cityIn="ngModel"
+          [(ngModel)]="orderForm.shippingCity"
+          name="city"
+          required
+        >
           <mat-option *ngFor="let c of cities" [value]="c">
-            {{c}}
+            {{ c }}
           </mat-option>
         </mat-select>
         <mat-error *ngIf="cityIn">please Choose a city from the list</mat-error>
-        <br>
-        <br>
+        <br />
+        <br />
       </mat-form-field>
       <mat-form-field class="full-width" appearance="fill">
         <mat-label>Street</mat-label>
-        <textarea matInput placeholder="Ex. 1 Main St, New York, NY" name="shippingStreet" #streetIn='ngModel' minlength="3"
-          [(ngModel)]="orderForm.shippingStreet" required></textarea>
-          <mat-error *ngIf="streetIn">your street address is too short </mat-error>
+        <textarea
+          matInput
+          placeholder="Ex. 1 Main St, New York, NY"
+          name="shippingStreet"
+          #streetIn="ngModel"
+          minlength="3"
+          [(ngModel)]="orderForm.shippingStreet"
+          required
+        ></textarea>
+        <mat-error *ngIf="streetIn"
+          >your street address is too short
+        </mat-error>
       </mat-form-field>
-      <br> <br>
+      <br />
+      <br />
       <mat-form-field class="full-width" appearance="fill">
         <mat-label>Choose a shipping date</mat-label>
-        <input type="text" matInput [matDatepicker]="picker" name="shippingDate" [(ngModel)]="orderForm.shippingDate">
+        <input
+          type="text"
+          matInput
+          [matDatepicker]="picker"
+          name="shippingDate"
+          [(ngModel)]="orderForm.shippingDate"
+        />
         <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
         <mat-datepicker [dateClass]="dateClass" #picker></mat-datepicker>
       </mat-form-field>
 
-      <br/>
-      <h3> Payments:</h3>
-      
-        <mat-form-field class="full-width" appearance="fill">
-            <mat-label>Credit Card - last 4 digits</mat-label>
-            <input matInput type="number" name="paymentDigits" #paymentDigitsIn='ngModel' minlength="4" [(ngModel)]="orderForm.paymentDigits"
-             placeholder="credit card last 4 digits" required>
-            <mat-error *ngIf="paymentDigitsIn">your street address is too short </mat-error>
+      <br />
+      <h3>Payments:</h3>
 
-          </mat-form-field>
-          <br>
-          <button mat-raised-button color="primary" (click)="completeOrder()">Complete Order <i class="material-icons">face </i> </button>
-
+      <mat-form-field class="full-width" appearance="fill">
+        <mat-label>Credit Card - last 4 digits</mat-label>
+        <input
+          matInput
+          type="number"
+          name="paymentDigits"
+          #paymentDigitsIn="ngModel"
+          minlength="4"
+          [(ngModel)]="orderForm.paymentDigits"
+          placeholder="credit card last 4 digits"
+          required
+        />
+        <mat-error *ngIf="paymentDigitsIn"
+          >your street address is too short
+        </mat-error>
+      </mat-form-field>
+      <br />
+      <button mat-raised-button color="primary" (click)="completeOrder()">
+        Complete Order <i class="material-icons">face </i>
+      </button>
     </form>
-</div>
+  </div>
 </div>

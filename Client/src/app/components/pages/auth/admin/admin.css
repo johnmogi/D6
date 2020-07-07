@@ -1,8 +1,6 @@
-
-   .admintable td {
-        border: 1px solid #eee;
+.admintable td {
+  border: 1px solid #eee;
 }
-#tdName{
-     min-width: 68px; 
-
+#tdName {
+  min-width: 68px;
 }

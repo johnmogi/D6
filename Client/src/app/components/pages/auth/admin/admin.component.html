@@ -1,38 +1,28 @@
+<button routerLink="/dashboard/add-item" mat-raised-button color="accent">
+  Add New Item
+</button>
 
-<button  routerLink="/dashboard/add-item" mat-raised-button color="accent">Add New Item</button>
-
-
-<table  class="mat-elevation-z8 admintable">
-
-    <thead>
-      <tr>
-  
-        <td>Edit</td>
-        <td>itemName</td>
-        <td>itemDescription</td>
-        <td>price</td>
-        <td>category</td>
-     
-        
-      </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor="let p of products">
-  
-        <td>
-          <a routerLink="edit/{{ p.productID }}" alt="edit this item"><i class="material-icons">edit</i></a>
-        </td>
-        <td id="tdname">{{ p.itemName }}</td>
-        <td>{{ p.itemDescription }}</td>
-        <td>{{ p.price }}</td>
-        <td >{{ p.catID }}</td>
-      
-       
-      </tr>
-    </tbody>
-  
-
-  </table>
-
-
-
+<table class="mat-elevation-z8 admintable">
+  <thead>
+    <tr>
+      <td>Edit</td>
+      <td>itemName</td>
+      <td>itemDescription</td>
+      <td>price</td>
+      <td>category</td>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let p of products">
+      <td>
+        <a routerLink="edit/{{ p.productID }}" alt="edit this item"
+          ><i class="material-icons">edit</i></a
+        >
+      </td>
+      <td id="tdname">{{ p.itemName }}</td>
+      <td>{{ p.itemDescription }}</td>
+      <td>{{ p.price }}</td>
+      <td>{{ p.catID }}</td>
+    </tr>
+  </tbody>
+</table>

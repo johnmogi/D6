@@ -1,8 +1,8 @@
 .mat-drawer-content {
   min-height: 75vh;
 }
-.full-width{
-  width:100%;
+.full-width {
+  width: 100%;
 }
 .spacer {
   flex: 1;
@@ -27,7 +27,6 @@ li.col {
 }
 
 .mat-button {
-
   padding: 0 4px !important;
 }
 td {
@@ -37,7 +36,7 @@ td {
 }
 /* UI */
 a {
-  color: #6A1B9A;
+  color: #6a1b9a;
 }
 
 .card {
@@ -59,7 +58,7 @@ app-footer .mat-drawer-container {
   background-image: linear-gradient(to right, #ffe68814, #ffc74026);
   background-size: cover;
 }
- 
+
 .mat-toolbar-row,
 .mat-toolbar-single-row {
   position: sticky;
@@ -70,25 +69,26 @@ app-footer .mat-drawer-container {
 }
 
 .grey {
-  background: #ECEFF1;
+  background: #eceff1;
 }
 
 #loginMessage {
-  color: #b71c1c
+  color: #b71c1c;
 }
 .mat-typography p {
   margin: 0;
-  background-image: linear-gradient(to right, #ffe6887a , #ffc740a1);
+  background-image: linear-gradient(to right, #ffe6887a, #ffc740a1);
   padding: 10px;
-} 
-.mat-flat-button.mat-warn, .mat-raised-button.mat-warn, .mat-fab.mat-warn, .mat-mini-fab.mat-warn {
+}
+.mat-flat-button.mat-warn,
+.mat-raised-button.mat-warn,
+.mat-fab.mat-warn,
+.mat-mini-fab.mat-warn {
   background-color: #4caf50;
 }
-.mat-toolbar-row{
-
+.mat-toolbar-row {
   background: url(/assets/images/pencil-typography-black-design.jpg);
   background-size: cover;
-
 }
 
 .container .mat-form-field {
@@ -97,4 +97,4 @@ app-footer .mat-drawer-container {
 .occupied-date-class {
   background: orange;
   border-radius: 100%;
-} 
+}

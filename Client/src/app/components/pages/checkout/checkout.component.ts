@@ -46,17 +46,15 @@ export class CheckoutComponent implements OnInit {
     private router: Router
   ) {}
   dateClass = (d: Date): MatCalendarCellCssClasses => {
-      console.log("move" ,this.occupiedDates)
     const date = d.getDate();
-    return date === 1 || date === 20 ? 'occupied-date-class' : ''; // replace with occupied dates
+    const newDate = this.occupiedDates.toLocaleString();
+    return this.occupiedDates.map((date) =>
+      newDate === date ? 'occupied-date-class' : ''
+    );
   };
   ngOnInit() {
     store.subscribe(() => {
       this.user = store.getState().user; // * -user ready - get active cart:
-      // this.orders = store.getState().orders;
-
-      //     this.occupiedDates = this.orders
-
       if (this.user && !this.user.isAdmin) {
         this.userID = +this.user.userID;
         this.fetchCart(this.user.userID);
@@ -65,12 +63,9 @@ export class CheckoutComponent implements OnInit {
     });
     this.userCart = store.getState().cartItems;
 
-    // * fetch Orders load into store
-    this.fetchAllOrder()
+    // * fetch Orders load into store -seems to be a pickle here
+    this.fetchAllOrder();
   }
-  // public removeItem(id) {
-  //     console.log(id)
-  // }
 
   public async fetchCart(id) {
     await this.cartService.findCart(id).subscribe(
@@ -86,27 +81,27 @@ export class CheckoutComponent implements OnInit {
       (res) => {
         this.userCartItems = res;
         this.sumTotalPrice(res);
-        // console.table('empty cart:' + JSON.stringify(this.userCartItems));
-        // console.table('cart:' + JSON.stringify(this.userCartItems));
       },
       (err) => err.message
     );
   }
 
   public sumTotalPrice(cart) {
-    console.log(cart);
     let sum = 0;
     for (let i = 0; i < cart.length; i++) {
       sum += cart[i].totalPrice;
     }
     this.totalPrice = sum;
   }
-  public search(searchTerm) {
-    console.log(searchTerm);
-    // this.userCartItems = this.products;
-    // const selected = this.products.filter((product) => product.itemName === this.searchTerm.term.toLowerCase());
-    // this.activeProducts = selected;
+  public search(searchTerm): void {
+    this.userCartItems.map((p) => document.getElementById(p.name));
+    if (this.searchTerm.length === 0) {
+      return;
+    }
+    let tmpArr = [];
+    this.userCartItems.map((p) => {});
   }
+
   public completeOrder() {
     if (
       !this.orderForm.paymentDigits ||
@@ -127,12 +122,10 @@ export class CheckoutComponent implements OnInit {
     this.orderForm.cartID = this.userCart[0].cartID;
     this.orderForm.clientID = this.userID;
     this.orderForm.subTotal = +this.totalPrice;
-    console.log(this.orderForm);
     this.orderService.addOrder(this.orderForm, shipTime).subscribe(
       (res) => {
         alert('you have successfully purchased the items,' + res);
         this.makeCart();
-        this.downloadReceipt();
       },
       (err) => err.message
     );
@@ -145,21 +138,16 @@ export class CheckoutComponent implements OnInit {
       (err) => err.message
     );
   }
-  public downloadReceipt() {
-    console.log('save as txt file from server');
-  }
 
-  public fetchAllOrder(){ 
+  public fetchAllOrder() {
     this.orderService.getAllorders().subscribe(
       (res) => {
         for (let i = 0; i < res.length; i++) {
           this.occupiedDates.push(res[i].shippingDate);
         }
-       // console.log('oc_orders: ' + JSON.stringify(this.occupiedDates)); // got all orders
       },
       (err) => alert(err.message)
     );
     this.orders = store.getState().orders;
-    this.occupiedDates = store.getState().orders;
-    }
+  }
 }

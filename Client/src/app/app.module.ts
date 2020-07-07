@@ -12,8 +12,8 @@ import { AdminComponent } from './components/pages/auth/admin/admin.component';
 import { LoginComponent } from './components/pages/auth/login/login.component';
 import { CartComponent } from './components/layouts/cart/cart.component';
 
-import {HttpClientModule} from "@angular/common/http";
-import {FormsModule} from "@angular/forms";
+import { HttpClientModule } from '@angular/common/http';
+import { FormsModule } from '@angular/forms';
 import { ItemComponent } from './components/pages/item/item.component';
 import { CheckoutComponent } from './components/pages/checkout/checkout.component';
 import { RegisterComponent } from './components/pages/auth/register/register.component';
@@ -21,8 +21,7 @@ import { PageNotFoundComponent } from './components/pages/page-not-found/page-no
 import { EditItemComponent } from './components/pages/auth/edit-item/edit-item.component';
 import { AddItemComponent } from './components/pages/auth/add-item/add-item.component';
 import { PopUpComponent } from './components/pages/pop-up/pop-up.component';
-
-
+import { ReceiptComponent } from './components/pages/auth/receipt/receipt.component';
 
 @NgModule({
   declarations: [
@@ -39,19 +38,18 @@ import { PopUpComponent } from './components/pages/pop-up/pop-up.component';
     PageNotFoundComponent,
     EditItemComponent,
     AddItemComponent,
-    PopUpComponent
+    PopUpComponent,
+    ReceiptComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-MaterialModule,
-HttpClientModule,
-FormsModule
-
+    MaterialModule,
+    HttpClientModule,
+    FormsModule,
   ],
   providers: [],
-bootstrap : [LayoutComponent]
-
+  bootstrap: [LayoutComponent],
 })
-export class AppModule { }
+export class AppModule {}

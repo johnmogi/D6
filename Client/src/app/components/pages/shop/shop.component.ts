@@ -20,24 +20,24 @@ export class ShopComponent implements OnInit {
   public activeProducts = [];
   public cats = [];
   public searchTerm = { term: '' };
-  // public product: ProductModel = new ProductModel();
 
-  constructor(private shopService: ShopService, private router: Router,
-    public dialog: MatDialog
-    // , public dialog_ref: MatDialogRef< PopUpComponent >,
-    // @Inject( MAT_DIALOG_DATA  ) public data?: number
-    ) {}
+  constructor(
+    private shopService: ShopService,
+    private router: Router,
+    public dialog: MatDialog // , public dialog_ref: MatDialogRef< PopUpComponent >,
+  ) // @Inject( MAT_DIALOG_DATA  ) public data?: number
+  {}
 
   ngOnInit() {
     store.subscribe(() => {
       this.products = store.getState().products;
     });
     this.shopService.getAllcats().subscribe(
-        (res) => {
-          this.cats = res;
-        },
-        (err) => alert(err.message)
-      );
+      (res) => {
+        this.cats = res;
+      },
+      (err) => alert(err.message)
+    );
 
     this.products = store.getState().products;
     this.activeProducts = this.products;
@@ -49,7 +49,6 @@ export class ShopComponent implements OnInit {
     }
   }
   public filterItems(catid: Number) {
-    console.log(catid)
     const selected = this.products.filter((product) => product.catID === catid);
     this.activeProducts = selected;
   }
@@ -58,9 +57,9 @@ export class ShopComponent implements OnInit {
   }
   public search() {
     this.activeProducts = this.products;
-    const selected = this.products.filter((product) => product.itemName === this.searchTerm.term);
+    const selected = this.products.filter(
+      (product) => product.itemName === this.searchTerm.term
+    );
     this.activeProducts = selected;
   }
-
-
 }

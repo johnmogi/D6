@@ -16,20 +16,11 @@ export class AdminService {
   public editItem(product: {}): Observable<any> {
     return this.http.patch<AuthModel>(this.api + 'update-item', product);
   }
-  // public addItem(productForm: any): Observable<any> {
-  //   return this.http.post<any>(
-  //     this.api + 'add-product',
-  //     productForm
-  //     //  {headers: this.getHeaders()}
-  //   );
-  // }
 
   public addImage(productForm: any) {
-    console.log(productForm)
     return this.http.post<any>(this.api + 'add-image', productForm);
   }
   public addItem(productForm: any) {
     return this.http.post<any>(this.api + 'add-product', productForm);
   }
-
 }

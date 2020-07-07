@@ -40,17 +40,19 @@ export class LayoutComponent implements OnInit {
     private cartService: CartService,
     private orderService: OrderService,
     private router: Router
-  ) { }
+  ) {}
   ngOnInit() {
     store.subscribe(() => {
       this.products = store.getState().products;
       this.user = store.getState().user; // * -user ready - get cart:
-      if(this.user && this.user.isAdmin){this.isAdmin = true}
+      if (this.user && this.user.isAdmin) {
+        this.isAdmin = true;
+      }
       if (this.user && !this.user.isAdmin) {
         this.isAdmin = false;
 
         if (!this.userOrder) {
-         this.fetchOrder(this.user.userID);
+          this.fetchOrder(this.user.userID);
         }
         if (!this.userCart) {
           this.fetchCart(this.user.userID);
@@ -59,10 +61,8 @@ export class LayoutComponent implements OnInit {
         this.firstVisit = +this.user.firstVisit;
         this.visitCounter = true;
       }
-      
     });
     // store
-
     // * fetch products load into store
     this.itemService.getAllProducts().subscribe(
       (res) => {
@@ -121,7 +121,6 @@ export class LayoutComponent implements OnInit {
   public fetchCartItems(id) {
     this.cartService.fetchItems(id).subscribe(
       (res) => {
-        // (2 calls)   console.table('price:' + JSON.stringify(res[0]));
         if (this.resize.length > 0) {
           this.totalPrice = +res[0].totalPrice;
         }
@@ -139,14 +138,11 @@ export class LayoutComponent implements OnInit {
     );
   }
   public fetchOrder(userID) {
-
     this.orderService.getOneUserOrderAsync(userID).subscribe(
       (res) => {
         this.userOrder[0] = res[-1]; //setting to last order
-        console.table("order, master: ", this.userOrder)
       },
       (err) => err.message
     );
   }
-
 }
