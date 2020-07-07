@@ -1,0 +1,43 @@
+<form>
+  <div class="example-container">
+    <mat-form-field appearance="fill">
+      <mat-label>Enter your email</mat-label>
+      <input
+        matInput
+        placeholder="pat@example.com"
+        name="username_email"
+        id="username_email_login"
+        [(ngModel)]="user.username_email"
+        minlength="7"
+        required
+        />
+        <!-- [formControl]="email" -->
+      <mat-error *ngIf="email.invalid">{{ getErrorMessage() }}</mat-error>
+    </mat-form-field>
+  </div>
+
+  <div class="example-container">
+    <mat-form-field appearance="fill">
+      <mat-label>Enter your password</mat-label>
+      <input
+        matInput
+        placeholder="choose password"
+        name="password"
+        id="password_login"
+        [(ngModel)]="user.password"
+        #passwordIn="ngModel"
+        minlength="3"
+        required
+      />
+      <mat-error *ngIf="passwordIn.errors?.minlength && passwordIn.touched"
+        >Password is too short...</mat-error
+      >
+    </mat-form-field>
+  </div>
+  
+  <div id="loginMessage" *ngIf="!valid">{{ErrorMessage}}</div>
+  <button type="button" mat-raised-button color="basic" (click)="login()">
+    Sign In
+  </button>
+
+</form>

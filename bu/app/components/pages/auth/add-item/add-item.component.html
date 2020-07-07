@@ -1,0 +1,28 @@
+<h2>New Item Details:</h2>
+<h3>
+    <form>
+        <label for="catID">Choose Category</label>
+        <br/>
+        <select [(ngModel)]="item.catID" name="catID">
+            <option disabled="disabled" selected="selected">Choose Category</option>
+            <option *ngFor="let c of cats" [ngValue]='c.catID'>{{ c.catName }}</option>
+        </select>
+        <br/>
+        <br/>
+        <input type="text" name="itemName" placeholder="itemName" [(ngModel)]="item.itemName"/>
+        <br/>
+        <br/>
+        <input type="number" name="price" placeholder="price" [(ngModel)]="item.price"/>
+        <br/>
+        <br/>
+        <input type="text" placeholder="itemDescription" name="itemDescription" [(ngModel)]="item.itemDescription"/>
+        <br/>
+        <br/>
+        <input type="file" accept="image/*" (change)="handleFileInput($event.target.files)" name="imageUrl" placeholder="imageUrl" [(ngModel)]="item.imageUrl"/>
+        <br/>
+        <br/>
+        <button (click)="addItem()">Add Item</button>
+    </form>
+
+    <a routerLink="/admin">Back to Dashboard</a>
+</h3>

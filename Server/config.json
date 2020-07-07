@@ -1,0 +1,8 @@
+{
+    "production": false,
+    "port": 3000,
+    "prod": 4200,
+    "jwt": {
+        "secretKey": "RxWlOOcGK2VjtVCHRGzTgwGqD0GH8L8RUlCGNEYMnB0YwnmaPHDADgqSsnMdih1"
+    }
+}

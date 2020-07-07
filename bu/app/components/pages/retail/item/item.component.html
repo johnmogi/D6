@@ -1,0 +1,18 @@
+<h2>Item Details:</h2>
+<h3>Name:
+    {{ name}}</h3>
+<h3>Price:
+    {{ price }}</h3>
+<h3>Description:
+    {{ itemDescription }}</h3>
+<h3>imageUrl:
+    {{ imageUrl }}</h3>
+<h3>catID:
+    {{ catID }}</h3>
+<form class="row" novalidate="novalidate">
+    <input type="number" ng-model="amount" name="amount" min="1" value="1" [(ngModel)]='addItem.amount' required="required" pattern="/^[0-9]*$/">
+        <button type="button" class="col" value="Add" (click)="addToCart(productID)">
+            add_shopping_cart Add To Cart
+        </button>
+    </form>
+    <a routerLink="/shop">Back to Shop</a>

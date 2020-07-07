@@ -1,0 +1,12 @@
+<br>
+<form class="needs-validation" novalidate>
+  <input type="email" placeholder="Enter Email..." name="username_email" [(ngModel)]="user.username_email"
+    class="form-control" id="username_email_login" aria-describedby="username_email" minlength="1" required />
+  <br />
+  <br />
+  <input type="password" placeholder="password..." name="password" [(ngModel)]="user.password" class="form-control"
+    id="password_login" aria-describedby="password" minlength="1" required />
+  <br />
+  <br />
+  <button type="button" mat-raised-button color="basic" (click)="login()"> Sign In </button>
+</form>

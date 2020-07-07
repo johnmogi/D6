@@ -1,0 +1,24 @@
+main section {
+  padding: 0 5px;
+}
+
+main .col-1 {
+  min-width: 12%;
+  max-width: 14%;
+  padding: 5px;
+  background: lightsalmon;
+}
+
+.col-2 {
+  max-width: 22%;
+}
+
+header .col-1 {
+  flex: 1;
+  max-width: 30%;
+}
+
+.main-container {
+  min-height: 75vh;
+
+}

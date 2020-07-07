@@ -1,0 +1,22 @@
+<p>cart works!</p>
+<table *ngFor="let c of userCart">
+  <thead>
+    <tr>
+      <td>#</td>
+      <td>img</td>
+      <td>amount</td>
+      <td>price</td>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>{{ c.itemID }}</td>
+
+      <td>i</td>
+      <td>{{ c.amount }}</td>
+      <td>{{ c.totalPrice }}</td>
+      <td><i class="material-icons">clear</i> </td>
+
+    </tr>
+  </tbody>
+</table>

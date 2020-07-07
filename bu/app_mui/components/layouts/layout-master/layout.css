@@ -1,0 +1,11 @@
+.column.is-one-fifths {
+    max-width: 20%;
+}
+.mat-drawer-content {
+
+    overflow-x: hidden;
+    padding: 10px;
+}
+.col-1.ng-star-inserted {
+    min-width: 12%;
+}

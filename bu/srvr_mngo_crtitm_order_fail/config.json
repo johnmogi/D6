@@ -1,0 +1,13 @@
+{
+  "production": false,
+  "port": 3000,
+  "MongoDB": {
+    "MONGO_URI": "process.env.MONGO_URI",
+    "mongodb": "//localhost/webStore",
+    "url": "mongodb://localhost:27017/webStore"
+  },
+  "jwt": {
+    "secretKey": "RxWlOOcGK2VjtVCHRGzTgwGqD0GH8L8RUlCGNEYMnB0YwnmaPHDADgqSsnMdih1"
+
+  }
+}

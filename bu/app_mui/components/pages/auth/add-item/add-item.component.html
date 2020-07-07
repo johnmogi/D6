@@ -1,0 +1,16 @@
+<h1>
+
+    add item :
+</h1>
+
+<form>
+    <mat-form-field>
+        <mat-label>Item Name:</mat-label>
+        <input matInput name="itemName" #nameIn='ngModel' minlength="1"
+          [(ngModel)]="addItItemForm.itemName" placeholder="item name" required>
+        <mat-error *ngIf="nameIn.touched && nameIn.invalid">must include item name </mat-error>
+      </mat-form-field>
+      <br />
+    <button mat-raised-button color="accent" (click)="addItem()">Add Item</button>
+
+</form>

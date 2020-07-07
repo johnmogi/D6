@@ -1,0 +1,27 @@
+<a routerLink="add-item"><h4>Add New Item</h4></a>
+<table class="table table-bordered table">
+  <thead>
+    <tr>
+      <td>#</td>
+      <td>itemName</td>
+      <td>itemDescription</td>
+      <td>price</td>
+      <td>imageUrl</td>
+      <td>catID</td>
+      <td>Edit</td>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let p of products">
+      <td>{{ p.productID }}</td>
+      <td>{{ p.itemName }}</td>
+      <td>{{ p.itemDescription }}</td>
+      <td>{{ p.price }}</td>
+      <td>{{ p.imageUrl }}</td>
+      <td>{{ p.catID }}</td>
+      <td>
+        <a routerLink="edit/{{ p.productID }}" alt="edit this item">Edit</a>
+      </td>
+    </tr>
+  </tbody>
+</table>

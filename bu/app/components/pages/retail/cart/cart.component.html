@@ -1,0 +1,25 @@
+<h4 *ngIf="cartBox">{{ cartBox }}</h4>
+<!-- <h6 *ngIf="usercart.length =0">your shopping cart is empty... go ahead and load some items...</h6> -->
+<table>
+    <thead>
+        <td>#</td>
+        <td>quantity</td>
+        <td>total</td>
+        <td>remove</td>
+    </thead>
+    <tbody>
+        <tr *ngFor="let c of userCart">
+            <td>{{ c.productID }}</td>
+            <td>{{ c.amount }}</td>
+            <td>{{ c.totalPrice }}</td>
+            <td>
+                <a (click)="removeItem(c.productID)" style="cursor:pointer;">[X]</a>
+            </td>
+        </tr>
+    </tbody>
+</table>
+<section class="bottom-cart row">
+    <h5 class="col">SubTotal :
+        {{ totalPrice }}</h5>
+    <button class="col" type="button" routerLink="checkout">Checkout</button>
+</section>

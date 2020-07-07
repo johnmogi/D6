@@ -1,0 +1,29 @@
+{
+  "name": "web-services",
+  "version": "1.0.0",
+  "description": "john mogi web store",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "nodejs",
+    "angular",
+    "mongo",
+    "express",
+    "jwt"
+  ],
+  "author": "John Mogi",
+  "license": "ISC",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "crypto": "^1.0.1",
+    "express": "^4.17.1",
+    "express-fileupload": "^1.1.7-alpha.3",
+    "fs": "0.0.1-security",
+    "jsonwebtoken": "^8.5.1",
+    "mysql": "^2.18.1",
+    "nodemon": "^2.0.4",
+    "uuid": "^8.2.0"
+  }
+}

@@ -1,0 +1,13 @@
+@import './assets/scss/main';
+@import './assets/scss/grid';
+
+
+html,
+body {
+    height: 100%;
+}
+
+body {
+    margin: 0;
+    font-family: Roboto, "Helvetica Neue", sans-serif;
+}

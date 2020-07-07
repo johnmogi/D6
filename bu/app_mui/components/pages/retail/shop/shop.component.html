@@ -1,0 +1,73 @@
+<div class="row">
+  <form class="col-2">
+    <mat-form-field appearance="fill">
+      <input
+        matInput
+        placeholder="Search Item"
+        name="term"
+        id="term"
+        [(ngModel)]="searchTerm.term"
+        minlength="1"
+        required
+      />
+      <button
+        mat-button
+        matSuffix
+        mat-icon-button
+        aria-label="Search"
+        (click)="search()"
+      >
+        <i class="material-icons">search </i>
+      </button>
+    </mat-form-field>
+  </form>
+  <div class="col-1"></div>
+  <div class="col-9">
+    <a
+      (click)="unFilterItems()"
+      class="nav-item"
+      mat-raised-button
+      color="accent"
+      >All Items</a
+    >
+    <a *ngFor="let c of cats" class="nav-item">
+      <a
+        type="button"
+        filterItems="(c.catID)"
+        mat-button
+        (click)="filterItems(c.catID)"
+      >
+        {{ c.catName }}
+      </a>
+    </a>
+  </div>
+</div>
+<div class="row">
+  <!-- <a
+    (click)="openDialog(p.itemName)"
+    class="col-4"
+    
+  > -->
+    <mat-card class="col-4" *ngFor="let p of activeProducts">
+      <mat-card-header>
+        <div mat-card-avatar class="example-header-image"></div>
+        <mat-card-title>{{ p.itemName }}</mat-card-title>
+        <mat-card-subtitle>{{ p.price }} $</mat-card-subtitle>
+      </mat-card-header>
+      <img
+        mat-card-image
+        src="https://material.angular.io/assets/img/examples/shiba2.jpg"
+        alt="Photo of a Shiba Inu"
+      />
+      <mat-card-content>
+        <p>
+          {{ p.itemDescription }}
+        </p>
+      </mat-card-content>
+      <mat-card-actions>
+        <button mat-button>Item Full details</button>
+        <!-- <button class="btn btn-lg btn-outline-primary" (click)="open()">Launch demo modal</button> -->
+      </mat-card-actions>
+    </mat-card>
+
+</div>

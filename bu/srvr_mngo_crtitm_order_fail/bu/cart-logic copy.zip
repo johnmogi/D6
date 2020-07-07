@@ -1,0 +1,88 @@
+const Cart = require('../models/cart')
+const CartItems = require('../models/cart-items')
+
+function addCart(cart) {
+    return cart.save();
+}
+
+function addCartItems(cartItems) {
+    return cartItems.save();
+}
+function getOldCart(userId) {
+    return Cart.find({ userId: userId}).exec();
+} 
+function getUserItems(cartId) {
+    return CartItems.find({ cartId: cartId}).exec();
+} 
+
+
+
+// // function getUserItems(userId) {
+// //     const cartId = Cart.find({ userId: userId}).exec();
+// //     console.log(cartId);
+// //     return CartItems.find({ cartId: cartID}).exec();
+// // } 
+
+
+
+// //search cart is inner function for add (to avoid duplicates)...
+// function searchCart(cart) {
+//     return Cart.find({ cartID: cart._id }).exec();
+// }
+// function searchCartItems(cart) {
+//     return CartItems.find({ cartId: cart._id }).exec();
+// }
+
+
+// function updateProduct(cart) {
+//     console.log(cart);
+  
+//     return CartItems.updateOne({ cartId : cart._id});
+
+//     return new Promise((resolve, reject) => {
+//         CartItems.updateOne({ _id: cart.cartId }, item, (err, info) => {
+//             if (err) {
+//                 reject(err);
+//                 return;
+//             }
+//             resolve(info.n ? item : null);
+//        });
+//     });
+// }
+// function deleteCart(_id) {
+//     return Cart.deleteOne({ _id });
+// }
+
+// function loadCart(cartItems) {
+//     return cartItems.save();
+// }
+// function removeItemFromCart(productId, cartId ) {
+//     return CartItems.find({ cartId: cartId }).deleteOne({ productId });
+// }
+
+
+// function searchProduct(name) {
+//     return Product.find({ name: new RegExp(name)}).exec();
+// } 
+
+module.exports = {
+addCart,
+addCartItems,
+getOldCart,
+getUserItems
+
+}
+
+
+// getUserItems,
+// getUserCart,
+
+// searchCart,
+// searchCartItems,
+// updateProduct,
+
+
+// addCart,
+// deleteCart,
+// loadCart,
+// removeItemFromCart

@@ -1,0 +1,77 @@
+.column.is-one-fifths {
+    max-width: 20%;
+}
+
+.mat-drawer-content {
+
+    overflow-x: hidden;
+    padding: 10px;
+}
+
+.col-1 {
+    min-width: 15%;
+}
+
+.col-3 {
+    max-width: 23%;
+}
+
+
+/* UI */
+i.material-icons.logo {
+    font-size: 30px;
+    padding: 0;
+    margin-right: -4px;
+    margin-top: -7px;
+}
+
+.topMenu {
+    margin-left: 5px;
+}
+
+mat-toolbar-row.mat-toolbar-row {
+
+    background: #ffffffc2;
+
+color: rgba(0, 0, 0, .87);
+    
+}
+
+.mat-toolbar-row a {
+    text-decoration: none;
+    ;
+}
+mat-toolbar-row span.mat-button-wrapper {
+    font-size: medium;
+    color: #000;
+    font-weight: 500;
+}
+.mat-toolbar.mat-accent {
+ 
+    background: url(/assets/images/hands-people-woman-working.jpg);
+  
+    background-size: cover;
+    min-height: 64px;
+    position: sticky;
+    top: 0;
+    z-index: 3;
+}
+
+h6.col.smallr {
+    text-align: right;
+    font-size: smaller;
+}
+
+i.material-icons {
+
+    vertical-align: middle;
+    padding: 0 5px;
+}
+.mat-toolbar {
+ /*   background: #ffd7409e; */
+  /*  background-image: linear-gradient(to right, #ffe6887a , #ffc740a1); */
+    color: #000;
+}
+.message b{
+    color: #ffe47c;
+}

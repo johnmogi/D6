@@ -1,0 +1,57 @@
+plan DB:
+
+OK - test, learn and build basic server with post cats and products- proceed after.
+needs to plan models connections between specific id and FK models:
+
+products connected to categories : 
+ProductSchema - ref - Category
+
+check localfields and foreignfields (again)
+
+
+PortfolioProject (dbname)
+
+[users -V]:
+userID (CART)
+userFirstName
+userLastName
+userName (email)
+password
+city
+streetAddress
+role ("Guest", "Admin")
+
+[categories -V]:
+catID (PK)
+catName
+
+[products -V]:
+productID (PK)
+productName
+catID (CART)
+price
+imageUrl
+
+[cart]:
+cartID (PK)
+userID (FK)
+cartTime
+
+[cartItem ]:
+itemID (PK)
+productID (FK)
+amount
+totalPrice (amount * price)
+cartID (FK)
+
+[clientOrder]:
+orderID (PK)
+clientID (FK *optional.)
+cartID (FK *optional.)
+subTotal
+shippingCity
+shippingStreet
+shippingDate
+orderTime
+paymentDigits (4 last)
+

@@ -1,0 +1,36 @@
+
+  <form >
+    <mat-form-field appearance="fill">
+      <input matInput placeholder="Search Item" name="term" id="term" [(ngModel)]="searchTerm.term" minlength="1"
+        required />
+      <button mat-button matSuffix mat-icon-button id="searchbut" aria-label="Search" (click)="search()">
+        <i class="material-icons">search </i>
+      </button>
+    </mat-form-field>
+  </form>
+
+ 
+    <a (click)="unFilterItems()" class="nav-item" mat-raised-button color="accent">All Items</a>
+    <a *ngFor="let c of cats" class="nav-item">
+      <a type="button" filterItems="(c.catID)" mat-button (click)="filterItems(c.catID)"> {{ c.catName }} </a>
+    </a>
+ 
+    <br>  <br>
+<div class="row">
+  <mat-card class="card col-4" *ngFor="let p of activeProducts">
+    <mat-card-header>
+     
+      <mat-card-title> <a routerLink="item/{{ p.productID }}">{{ p.itemName }} </a></mat-card-title>
+      <mat-card-subtitle>Price: {{p.price}}</mat-card-subtitle>
+    </mat-card-header>
+    <a routerLink="item/{{ p.productID }}"> <img mat-card-image
+        src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt=" {{ p.imageUrl }}">
+    </a>
+    <mat-card-content> Description: <p> {{p.itemDescription}} </p>
+    </mat-card-content>
+    <mat-card-actions>
+      <!-- <a mat-raised-button color="warn" routerLink="item/{{ p.productID }}" (click)="openDialog()" > popup quantity </a> -->
+      <a mat-raised-button color="primary"  routerLink="item/{{ p.productID }}"> View Full Details </a>
+    </mat-card-actions>
+  </mat-card>
+</div>

@@ -1,0 +1,168 @@
+const express = require('express');
+const router = express.Router();
+const Cart = require('../models/cart');
+const CartItems = require('../models/cart-items');
+const cartLogic = require('../business-logic/cart-logic');
+
+
+// add cart: POST http://localhost:3000/api/cart/add-cart
+router.post('/add-cart', async (request, response) => {
+    const cart = new Cart(request.body);
+    try {
+        cart.date = new Date();
+        const addedCart = await cartLogic.addCart(cart);
+        response.json(addedCart);
+    } catch (error) {
+        response.status(500).send(error);
+    }
+});
+
+
+
+// create or locate cart-  cart: POST http://localhost:3000/api/cart/add
+router.post('/add-items', async (request, response) => {
+    const cart = new CartItems(request.body);
+    // Check if there's an old cart for this user: 
+    // const oldCart = await cartLogic.searchCart(cart);
+    // console.log(oldCart);
+    // decided to avoid duplicates: only 1 active cart per user.
+    // if (oldCart.length !== 0) {
+    //     try {
+    //         response.json(oldCart);
+    //     } catch (error) {
+    //         response.status(500).send(error);
+    //     }
+    // } else {
+        try {
+            const items = await cartLogic.addCartItems(cart);
+            console.log(items);
+            response.json(items);
+        } catch (error) {
+            response.status(500).send(error);
+        }
+    // }
+});
+
+// get cartID - old GET http://localhost:3000/api/cart/user-cart/5edf8fc93e7ddb3c5ad0ef46
+router.get('/user-cart/:id', async (request, response) => {
+    const id = request.params.id;
+    try {
+        const oldCart = await cartLogic.getOldCart(id);
+        console.log(oldCart[0]._id);
+        const oldItems = await cartLogic.getUserItems(oldCart[0]._id);
+        await console.log(JSON.stringify(oldItems));
+
+        response.json(oldItems);
+    } catch (error) {
+        response.status(500).send(error);
+    }
+});
+
+
+
+
+// // get all catItems for user GET http://localhost:3000/api/cart/user/:userId
+// router.get('/user/:userId', async (request, response) => {
+//     const id = request.params.userId;
+//     try {
+//         const getCartForUser = await cartLogic.getUserItems(id);
+//         console.log(getCartForUser[0]._id)
+       
+//         // throw ("user doesn't have a cart");
+//     } catch (error) {
+//         response.status(500).send(error);
+//     }
+//     return;
+//     response.json(getUserCart);
+// });
+
+
+// // make amount calculation at client side.
+
+// router.post('/add-items', async (request, response) => {
+
+//     // userid? has a cart? it ha this product? yes- update, no, 
+//     const cart = new CartItems(request.body);
+//     try {
+//         const checkForItem = await cartLogic.searchCartItems(cart);
+//         if (checkForItem[0].cartId == cart.cartId) {
+//             console.log(cart.cartId);
+//             console.log(checkForItem[0].cartId);
+//             const newAmount = cart.amount + checkForItem[0].amount;
+//             const newPrice = cart.price + checkForItem[0].price;
+//             cart.amount = newAmount;
+//             cart.price = newPrice;
+//             // update cartitems 
+//             console.log(cart);
+//             return;
+//             const updatedCart = await cartLogic.updateProduct(cart);
+//             response.json(updatedCart);
+//         }
+
+//     } catch (error) {
+//         response.status(500).send(error.message);
+//     }
+//     try {
+//         const loadNewCart = await cartLogic.loadCart(cart);
+//         response.json(loadNewCart);
+//     } catch (error) {
+//         response.status(500).send(error.message);
+//     }
+// });
+
+
+// // remove items from cart- DELETE http://localhost:3000/api/cart/remove-items
+// router.delete('/remove-items', async (request, response) => {
+//     try {
+//         const productId = request.body.productId;
+//         const cartId = request.body.cartId;
+
+//         await cartLogic.removeItemFromCart(productId, cartId);
+//         response.sendStatus(204);
+//     } catch (error) {
+//         response.status(500).send(error.message);
+//     }
+// });
+
+// // remove allitem from cart
+
+// // delete cart: DELETE http://localhost:3000/api/cart/delete
+// //(send cart id in body {instead of url for improved security})
+// router.delete('/delete', async (request, response) => {
+//     try {
+//         const _id = request.body._id;
+//         await cartLogic.deleteCart(_id);
+//         response.sendStatus(204);
+//     } catch (error) {
+//         response.status(500).send(error.message);
+//     }
+// });
+
+module.exports = router;
+
+
+
+
+
+// create or locate cart-  cart: POST http://localhost:3000/api/cart/add
+router.post('/add-items', async (request, response) => {
+    const cart = new CartItems(request.body);
+    // Check if there's an old cart with the same product for this user: 
+    const oldCart = await cartLogic.searchCartForItem(cart);
+    console.log(oldCart);
+    if (oldCart.length !== 0) {
+    try {
+            throw ("this product is already in this cart")
+        } catch (error) {
+            response.status(500).send(error);
+        }
+    } else {
+        try {
+            const items = await cartLogic.addCartItems(cart);
+            console.log(items);
+            response.json(items);
+        } catch (error) {
+            response.status(500).send(error);
+        }
+    }
+});

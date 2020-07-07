@@ -1,0 +1,63 @@
+<form>
+
+    <div class="step-1">
+        <h4>fill in your account info:</h4>
+
+        <input type="text" id="id" name="id" placeholder="Identification" required="required" minlength="1" [(ngModel)]="user.id" #idIn="ngModel"/>
+        <p class="red" *ngIf="idIn.touched && idIn.errors">{{ errorMessages.id }}</p>
+        <br/>
+        <br/>
+        <input type="email" id="email" name="email" placeholder="Email as userName" required="required" minlength="4" [(ngModel)]="user.username_email" #emailIn="ngModel"/>
+        <p class="red" *ngIf="emailIn.touched && emailIn.errors">
+            {{ errorMessages.email }}
+        </p>
+        <br/>
+        <br/>
+        <input type="password" id="password" name="password" placeholder="password" required="required" [(ngModel)]="user.password" #passIn="ngModel"/>
+        <p class="red" *ngIf="passIn.touched && passIn.errors">
+            {{ errorMessages.passwords }}
+        </p>
+        <br/>
+        <br/>
+        <input type="password" id="conf_password" name="conf_password" placeholder="confirm password" required="required" #passConfIn="ngModel" [(ngModel)]="user.conf_password"/>
+        <p class="red" *ngIf="passConfIn.touched && passConfIn.errors">
+            {{ errorMessages.passwords }}
+        </p>
+        <br/>
+        <br/>
+        <div class="red red-box">{{errorbox}}</div>
+        <button type="button" (click)="checkUser()">Check availability</button>
+
+    </div>
+
+
+    <div class="step-2">
+        <h4>second step:</h4>
+        <div id="secondPart" *ngIf="firstStepValid">
+            <input type="text" id="firstName" name="firstName" placeholder="firstName" required="required" minlength="1" [(ngModel)]="user.firstName" #fnameIn="ngModel"/>
+            <p class="red" *ngIf="fnameIn.touched && fnameIn.errors">First Name is a required field</p>
+            <br/>
+            <br/>
+            <input type="text" id="firstName" name="firstName" placeholder="firstName" required="required" minlength="1" [(ngModel)]="user.firstName" #fnameIn="ngModel"/>
+            <p class="red" *ngIf="fnameIn.touched && fnameIn.errors">First Name is a required field</p>
+            <br/>
+            <br/>
+            <input type="text" id="lastName" name="lastName" placeholder="lastName" required="required" minlength="1" [(ngModel)]="user.lastName" #lnameIn="ngModel"/>
+            <p class="red" *ngIf="lnameIn.touched && lnameIn.errors">Last Name is a required field</p>
+            <br/>
+            <br/>
+            <select id="city" name="city" required="required">
+                <option disabled="disabled">Choose nearest city</option>
+                <option *ngFor="let c of cities" value={{c}}>{{c}}</option>
+            </select>
+            <br/>
+            <br/>
+            <input type="text" id="street" name="street" placeholder="street" required="required" minlength="1" [(ngModel)]="user.street" #streetIn="ngModel"/>
+            <p class="red" *ngIf="streetIn.touched && streetIn.errors">street address is a required field</p>
+            <br/>
+            <br/>
+        </div>
+        <button type="button" [disabled]="secondStepValid" (click)="addUser()">Sign Up</button>
+
+    </div>
+</form>

@@ -1,0 +1,52 @@
+<h1>
+
+    add item :
+</h1>
+
+<form>
+    
+   
+      <mat-form-field appearance="fill">
+        <mat-label>Choose category:</mat-label>
+        <mat-select name="catID" #catIDIn='ngModel'  [(ngModel)]="addItItemForm.catID">
+          <mat-option *ngFor="let c of cats" value="{{c.catID}}">
+            {{c.catName}}
+          </mat-option>
+        </mat-select>
+        <mat-error *ngIf="catIDIn.touched && catIDIn.invalid">must include category </mat-error>
+      </mat-form-field>
+      <br>
+      <mat-form-field>
+        <mat-label>Item Name:</mat-label>
+        <input matInput name="itemName" #nameIn='ngModel' minlength="1"
+          [(ngModel)]="addItItemForm.itemName" placeholder="item name" required>
+        <mat-error *ngIf="nameIn.touched && nameIn.invalid">must include item name </mat-error>
+      </mat-form-field>
+      <br />
+     
+
+    <!-- <input type="file" matInput [(ngModel)]="addItItemForm.imageUrl" #fileIn='ngModel' id="fileUpload" name="imageUrl" accept="image/*" style="display:none;" /> -->
+    <!-- <input class="form-control col-md-4" type="file" name="imageUrl" (change)='loadImage($event)'
+    accept="image/*" multiple="multiple">
+<button (click)="uploadImage()">Upload image</button> -->
+    <!-- <input [(ngModel)]="addItItemForm.imageUrl" #fileIn='ngModel' id="fileUpload" name="imageUrl" #fileInput type="file" id="file"> -->
+    
+  <br />
+      <mat-form-field>
+        <mat-label>Item Price:</mat-label>
+        <input matInput type="number" name="price" #priceIn='ngModel' min="1"
+          [(ngModel)]="addItItemForm.price" placeholder="item price" required>
+        <mat-error *ngIf="priceIn.touched && priceIn.invalid">must include item price </mat-error>
+      </mat-form-field>
+      <br />
+      <mat-form-field>
+        <mat-label>Item Description:</mat-label>
+        <textarea matInput name="itemDescription" #descIn='ngModel' minlength="1"
+          [(ngModel)]="addItItemForm.itemDescription" placeholder="item price" required></textarea>
+        <mat-error *ngIf="descIn.touched && descIn.invalid">must include item Description </mat-error>
+      </mat-form-field>
+      <br />
+    <button mat-raised-button color="accent" (click)="addItem()">            <mat-icon>file_upload</mat-icon>  
+        Add Item</button>
+
+</form>

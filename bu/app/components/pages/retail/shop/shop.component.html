@@ -1,0 +1,20 @@
+<div class="row">
+    <div class="col">
+        search
+    </div>
+    <div class="col">cats</div>
+</div>
+<div class="row">
+    <div class="col col-4" *ngFor="let p of products">
+        <a routerLink="item/{{ p.productID }}">
+            {{ p.itemName }}
+            <br>
+                <p>
+                    {{p.itemDescription}}
+                </p>
+                <p>
+                    {{p.price}}
+                </p>
+            </a>
+        </div>
+    </div>

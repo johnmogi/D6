@@ -1,0 +1,82 @@
+<header class="row">
+    <nav class="col">
+        <ul class="row">
+            <li class="col-1">
+                <a routerLink="home">logo</a>
+            </li>
+            <li class="col-1">
+                <a routerLink="home">Home</a>
+            </li>
+            <li class="col-1">
+                <a routerLink="shop">Shop</a>
+            </li>
+            <li class="col-1">
+                <a routerLink="register">Register</a>
+            </li>
+            <li class="col-1">
+                <a routerLink="admin">Admin</a>
+            </li>
+        </ul>
+    </nav>
+    <div class="spacer col"></div>
+    <ul class="row col">
+        <li class="col">
+            <span>
+                <a href="mailto:info@kodo.press">info@kodo.press</a>
+                <br/>
+                <a href="tel:050-9382456">050-9382456</a>
+            </span>
+        </li>
+        <li class="col">
+            Hello
+            {{ user ? user.firstName : " Guest" }}
+            <br/>
+            <button (click)="logout()">Logout</button>
+        </li>
+    </ul>
+</header>
+<hr/>
+<main class="row main-container">
+    <section class="sidebar col-1">
+        <app-login *ngIf="!user"></app-login>
+        <app-cart *ngIf="user"></app-cart>
+    </section>
+    <section class="sidebar col">
+        <router-outlet></router-outlet>
+    </section>
+    <section class="sidebar col-1">
+        there are
+        {{ products.length }}
+        Products.<br/>
+        ,
+        {{ orders.length }}
+        orders.<br/>
+        <div class="yellow box-0" *ngIf="visitCounter">
+            Hi!,<br/>
+            {{firstName}}<br/>
+            number of times you have visited this site:
+            {{firstVisit}}<br/>
+            Wellcome!
+        </div>
+        <div class="yellow box-0" *ngIf="!visitCounter">
+            Hi!,<br/>
+            {{firstName}}<br/>
+            this is the first time you've visited this site : Wellcome Aboard!
+        </div>
+
+        <div class="card yellow box-1" *ngIf="cartTime">
+            you have left an open cart:
+
+            <br>
+                from: time of visit:
+                {{cartTime}}
+                <br>
+                    at the Price of:
+                    {{cartPrice}}
+                </div>
+
+
+            </section>
+        </main>
+        <hr/>
+            <app-footer></app-footer>
