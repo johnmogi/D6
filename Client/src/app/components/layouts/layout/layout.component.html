@@ -28,7 +28,7 @@
         
     </button>
     <button type="button" *ngIf="user" color="primary" id="layoutButton" mat-raised-button color="basic" (click)="logout()"> Logout </button>
-    <button type="button" id="layoutButton" mat-raised-button color="basic" disabled="" (click)="resize">
+    <button type="button" id="layoutButton" mat-raised-button color="basic"  (click)="resize()">
         <i class="material-icons">compare_arrows</i>
     </button>
     <span class="spacer"></span>
@@ -45,7 +45,7 @@
             <a routerLink="home" mat-list-item>Home</a>
             <a routerLink="shop" mat-list-item>Shop</a>
             <a routerLink="register" mat-list-item>Register</a>
-            <a routerLink="dashboard" mat-list-item>Admin</a>
+            <a routerLink="dashboard" mat-list-item *ngIf="isAdmin">Admin</a>
             <a routerLink="order" mat-list-item>Checkout</a>
             <a (click)="sidenav.toggle()" mat-list-item><i class="material-icons">close</i></a>
         </mat-nav-list>

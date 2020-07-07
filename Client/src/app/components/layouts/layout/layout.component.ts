@@ -45,8 +45,9 @@ export class LayoutComponent implements OnInit {
     store.subscribe(() => {
       this.products = store.getState().products;
       this.user = store.getState().user; // * -user ready - get cart:
+      if(this.user && this.user.isAdmin){this.isAdmin = true}
       if (this.user && !this.user.isAdmin) {
-        this.isAdmin = true;
+        this.isAdmin = false;
 
         if (!this.userOrder) {
           this.fetchOrder(this.user.userID);
@@ -91,7 +92,7 @@ export class LayoutComponent implements OnInit {
     this.products = store.getState().products;
     this.orders = store.getState().orders;
   } // ngonint
-  ngAfterViewChecked(){}
+
   public resize() {
     this.size = !this.size;
   }

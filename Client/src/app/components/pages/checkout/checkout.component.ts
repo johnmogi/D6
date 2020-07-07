@@ -52,9 +52,9 @@ export class CheckoutComponent implements OnInit {
 
 
     }
-    public removeItem(id) {
-        console.log(id)
-    }
+    // public removeItem(id) {
+    //     console.log(id)
+    // }
 
     public async fetchCart(id) {
         await this.cartService.findCart(id).subscribe((res) => {
@@ -100,9 +100,25 @@ export class CheckoutComponent implements OnInit {
         console.log(this.orderForm)
         this.orderService.addOrder(this.orderForm).subscribe((res) => {
 
-            console.log(res)
+            alert("you have successfully purchased the items," + res)
+this.makeCart();
+this.downloadReceipt()
+
+           // make a new cart for the user, keep a refernce for the old cart just take order info (store?)
+
             // console.table('empty cart:' + JSON.stringify(this.userCartItems));
             // console.table('cart:' + JSON.stringify(this.userCartItems));
         }, (err) => err.message);
+    }
+
+    public makeCart(){
+// keeping old cart for billing purposes- but could also archive or delete it... and **{items}**... 
+this.cartService.makeCart(this.userID).subscribe((res) => {
+  console.log("made a new, empty cart for user" + res[0].cartID)
+}, (err) => err.message);
+    
+    }
+    public downloadReceipt(){
+console.log("save as txt file from server")
     }
 }
