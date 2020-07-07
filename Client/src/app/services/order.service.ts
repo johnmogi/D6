@@ -23,8 +23,8 @@ public getOneUserOrderAsync(userID : Number): Observable < OrderModel[] > {
   return this.http.get<OrderModel[]>(this.api + 'user/' + userID)
 }
 
-public addOrder(orderForm: any) {
-  return this.http.post<any>(this.api + 'new', orderForm);
+public addOrder(orderForm: any, shipTime: String) {
+  return this.http.post<any>(this.api + 'new', {form: orderForm, shipTime: shipTime});
 }
 
 }

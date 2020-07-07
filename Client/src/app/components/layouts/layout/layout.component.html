@@ -22,10 +22,12 @@
     </mat-toolbar-row>
 </mat-toolbar>
 <mat-toolbar>
+    <button type="button" *ngIf="user" color="primary" id="layoutButton" mat-raised-button color="primary"
+    (click)="logout()"> Logout </button>
+    
     <button type="button" *ngIf="user" mat-raised-button color="accent" routerLink="shop">
         <i class="material-icons">shop</i> {{ user ? "Resume" : "Start" }} Shopping </button>
-    <button type="button" *ngIf="user" color="primary" id="layoutButton" mat-raised-button color="basic"
-        (click)="logout()"> Logout </button>
+
     <button type="button" id="layoutButton" mat-raised-button color="basic" (click)="resize()">
         <i class="material-icons">compare_arrows</i>
     </button>
@@ -67,14 +69,19 @@
             <!--Sidebar-2-->
             <div class="card col-1 grey" *ngIf="user">
                 <mat-chip-list class="mat-chip-list-stacked">
-                    <mat-chip color="primary" selected> {{ products.length }} Products</mat-chip>
-                    <mat-chip color="accent" selected>{{ orders.length }} Orders </mat-chip>
+                    <mat-chip color="basic" selected> 
+                    <span matBadge="{{ products.length }}" matBadgeColor="accent" matBadgeOverlap="false"> Web-Store Products</span>  
+                       </mat-chip>
+                       <mat-chip color="accent" selected> 
+                        <span matBadge="{{ orders.length }}" matBadgeColor="basic" matBadgeOverlap="false"> Web-Store Orders</span>  
+                           </mat-chip>
+                    
                 </mat-chip-list>
                 <br />
-                <div class="card message message3" *ngIf="firstVisit==0">
+                <div class="card message message3" *ngIf="firstVisit<1">
                     <!-- new user - [firstVisit] = 0/1 ~ check -->
                     <h4>Wellcome to Web Store! </h4>
-                    <p>Since this is your <b>first visit </b> we'll grant you a bonus upon your first purchase.</p>
+                    <p>Since this is your <br> <b >first visit </b>  we'll grant you a bonus upon your first purchase.</p>
                 </div>
                 <div class="card message message1" *ngIf="userOrder.length>0">
                     <!--  if user has an open cart with at least one item. -->

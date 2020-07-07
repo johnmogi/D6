@@ -8,6 +8,16 @@
       <mat-error *ngIf="nameIn.touched && nameIn.invalid">must include item name </mat-error>
     </mat-form-field>
     <br />
+    <mat-form-field appearance="fill">
+      <mat-label>Choose category:</mat-label>
+      <mat-select name="catID" #catIDIn='ngModel'  [(ngModel)]="editItemForm.catID">
+        <mat-option *ngFor="let c of cats" value="{{c.catID}}">
+          {{c.catName}}
+        </mat-option>
+      </mat-select>
+      <mat-error *ngIf="catIDIn.touched && catIDIn.invalid">must include category </mat-error>
+    </mat-form-field>
+    <br>
     <mat-form-field>
       <mat-label>Edit Item Price:</mat-label>
       <input type="number" min="1" matInput name="price" #priceIn='ngModel' value="{{price}}" minlength="1"
@@ -22,9 +32,7 @@
       <mat-error *ngIf="descIn && descIn.invalid"> must include item Description </mat-error>
     </mat-form-field>
     <br />
-    <img mat-card-image *ngIf="imageUrl" src="../../../../assets/images/{{ imageUrl }}" alt=" {{ imageUrl }}"
-      style="max-width:10%;">
-    <br /> {{ imageUrl }} <button type="submit" mat-raised-button type="button" color="primary" class="col" value="Add"
+    <button type="submit" mat-raised-button type="button" color="primary" class="col" value="Add"
       (click)="editItem(productID)">
       <i class="material-icons ">create</i> Submit Changes </button>
       <br/>

@@ -58,14 +58,9 @@ export class ShopComponent implements OnInit {
   }
   public search() {
     this.activeProducts = this.products;
-    const selected = this.products.filter((product) => product.itemName === this.searchTerm.term.toLowerCase());
+    const selected = this.products.filter((product) => product.itemName === this.searchTerm.term);
     this.activeProducts = selected;
   }
-  public openDialog(id): void {
-    console.log(id)
-    const dialogRef = this.dialog.open(ItemComponent, {
-      width: '450px',
-    });
-}
+
 
 }

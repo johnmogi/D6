@@ -3,7 +3,6 @@
 const express = require('express');
 const router = express.Router();
 const sendError = require("../helpers/send-error");
-
 const orderLogic = require('../business-logic/order-logic');
 
 //(get) http://localhost:3000/api/orders //? get all orders
@@ -20,30 +19,30 @@ router.get('/', async (request, response) => {
 //(get) http://localhost:3000/api/orders/item/:id //? get one order
 router.get('/item/:id', async (request, response) => {
     // console.log("hi")
-     const id = +request.params.id
-     try {
-         const order = await orderLogic.getOneOrder(id);
-         response.json(order);
-     } catch (error) {
-         sendError(response, error);
-     }
- });
+    const id = +request.params.id
+    try {
+        const order = await orderLogic.getOneOrder(id);
+        response.json(order);
+    } catch (error) {
+        sendError(response, error);
+    }
+});
 
- //(get) http://localhost:3000/api/orders/user/:user //? get one (last) order of a specific user
+//(get) http://localhost:3000/api/orders/user/:user // get one (last) order of a specific user
 router.get('/user/:user', async (request, response) => {
     // console.log("hi")
-     const user = +request.params.user
-     try {
-         const order = await orderLogic.getOneOrderFromUser(user);
-         response.json(order);
-     } catch (error) {
-         sendError(response, error);
-     }
- });
+    const user = +request.params.user
+    try {
+        const order = await orderLogic.getOneOrderFromUser(user);
+        response.json(order);
+    } catch (error) {
+        sendError(response, error);
+    }
+});
 
- 
 // POST  localhost:3000/api/orders/new
 router.post('/new/', async (request, response) => {
+
     const time = new Date();
     const year = time.getFullYear();
     const month = time.getMonth() + 1;
@@ -51,12 +50,13 @@ router.post('/new/', async (request, response) => {
     const hours = time.getHours();
     const minutes = time.getMinutes();
     const seconds = time.getSeconds();
-    const nowTime = `${year}-${month}-${day} ${hours}:${minutes}:${seconds}`;
+    const nowTime = `${year}-${month}-${day}:${hours}:${minutes}:${seconds}`;
 
     try {
-        const order = request.body;
+        const order = request.body.form;
+        //console.log(order)
+        order.shippingDate = request.body.shipTime
         order.orderTime = nowTime.toString();
-
         const addedOrder = await orderLogic.addOrder(order);
         response.json(addedOrder);
     } catch (error) {
@@ -64,5 +64,4 @@ router.post('/new/', async (request, response) => {
     }
 });
 
-// INSERT INTO`clientorder`(`orderID`, `clientID`, `cartID`, `subTotal`, `shippingCity`, `shippingStreet`, `shippingDate`, `orderTime`, `paymentDigits`) VALUES(NULL, '25', '9', '1000', 'Barcelona', 'a', '2020-07-01', '2020-07-01', '1234');
 module.exports = router;

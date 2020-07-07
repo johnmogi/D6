@@ -1,3 +1,16 @@
+    image from shop:
+
+        <!-- <a routerLink="item/{{ p.productID }}"> <img mat-card-image
+        src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt=" {{ p.imageUrl }}">
+    </a> -->
+
+    item image: 
+
+    <img mat-card-image *ngIf="imageUrl" src="../../../../assets/images/{{ imageUrl }}" alt=" {{ imageUrl }}"
+      style="max-width:10%;">
+    <br /> {{ imageUrl }} 
+    
+    
     if (this.userCartItems.length < 1) {
       this.cartLoad = false;
       this.userCart = [];
@@ -11,4 +24,37 @@
       this.sumTotalPrice(this.userCartItems);
     }
 
+  public openDialog(id): void {
+    const dialogRef = this.dialog.open(ItemComponent, {
+      width: '450px',
+    });
+}
+
     was in cart - but no good
+
+
+    client order time: 
+        // const newCart = await dal.executeAsync(sql, [
+    //     order.clientID,
+    //     order.cartID,
+    //     order.subTotal,
+    //     order.shippingCity,
+    //     order.shippingStreet,
+    //     order.shippingDate,
+    //     order.paymentDigits,
+    //     order.orderTime
+    // ]);
+
+
+shopping comments
+           // make a new cart for the user, keep a refernce for the old cart just take order info (store?)
+
+            // console.table('empty cart:' + JSON.stringify(this.userCartItems));
+            // console.table('cart:' + JSON.stringify(this.userCartItems));
+
+
+                // out of time for better order protection  const sql = `INSERT INTO clientOrder VALUES(DEFAULT,  ?, ? ,? ,? ,? ,? ,? ,?)`;
+    // (clientID,cartID,subTotal,shippingCity,shippingStreet,shippingDate,orderTime,paymentDigits)
+    //     shippingDate,paymentDigits, orderTime)//  const sql = `INSERT INTO clientOrder (clientID,cartID,subTotal,shippingCity,shippingStreet,shippingDate,orderTime,paymentDigits) VALUES (DEFAULT, ${order.clientID},${order.cartID},${order.subTotal}, ${order.clientID},${order.clientID},'${order.shippingCity}','${order.shippingStreet}', '${order.shippingDate}', '${order.orderTime}', ${order.paymentDigits}) `;
+    
+   (clientID,cartID,subTotal,shippingCity,shippingStreet,

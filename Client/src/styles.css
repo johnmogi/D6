@@ -2,6 +2,10 @@
   min-height: 75vh;
 }
 
+.full-width {
+  width: 100%;
+}
+
 .spacer {
   -webkit-box-flex: 1;
       -ms-flex: 1;
@@ -30,6 +34,12 @@ li.col {
   padding: 0 4px !important;
 }
 
+td {
+  min-width: 10%;
+  text-align: center;
+  padding: 5px;
+}
+
 /* UI */
 a {
   color: #6A1B9A;
@@ -41,14 +51,20 @@ a {
 
 .col.jumbotron {
   min-height: 350px;
-  background: #FAFAFA;
+  background: #ffffff9c;
+  /* background: #FAFAFA; */
   padding: 5px;
 }
 
+.mat-form-field {
+  min-width: 300px;
+}
+
 app-footer .mat-drawer-container {
-  background-color: #eceff1;
+  background: #ffe47c;
   background-image: -webkit-gradient(linear, left top, right top, from(#ffe68814), to(#ffc74026));
   background-image: linear-gradient(to right, #ffe68814, #ffc74026);
+  background-size: cover;
 }
 
 .mat-toolbar-row,
@@ -78,6 +94,20 @@ app-footer .mat-drawer-container {
 
 .mat-flat-button.mat-warn, .mat-raised-button.mat-warn, .mat-fab.mat-warn, .mat-mini-fab.mat-warn {
   background-color: #4caf50;
+}
+
+.mat-toolbar-row {
+  background: url(/assets/images/pencil-typography-black-design.jpg);
+  background-size: cover;
+}
+
+.container .mat-form-field {
+  min-width: 235px !important;
+}
+
+.example-custom-date-class {
+  background: orange;
+  border-radius: 100%;
 }
 
 /*!

@@ -6,7 +6,7 @@ export class OrderModel {
     public subTotal?: Number,
     public shippingCity?: String,
     public shippingStreet?: String,
-    public shippingDate?: String,
+    public shippingDate?: Date ,
     public paymentDigits?: Number,
     public orderTime?: Date
     ) {

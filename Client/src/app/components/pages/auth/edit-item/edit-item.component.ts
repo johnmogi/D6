@@ -19,6 +19,7 @@ export class EditItemComponent implements OnInit {
   public price  = 0;
   public imageUrl : string = '';
   public itemDescription : string = '';
+  public cats = [];
   public catID : string = '';
   public editItemForm = {productID: 0, itemName: '',price : 0, imageUrl: '', itemDescription :'', catID: 0}
 
@@ -42,7 +43,20 @@ export class EditItemComponent implements OnInit {
          } catch (err) {
            alert(err.message);
          }
-       }
+         this.shopService.getAllcats().subscribe(
+          (res) => {
+            this.cats = res;
+          },
+          (err) => alert(err.message)
+        );
+        console.log(this.cats)
+        // * Fetch this item details:
+
+      } catch (err) {
+          alert(err.message);
+      }
+       
+      
 public editItem(id){
   if (!this.editItemForm.itemName){
     this.editItemForm.itemName = this.name

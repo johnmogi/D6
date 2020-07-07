@@ -15,25 +15,14 @@ async function getOneOrderFromUser(user) {
     const order = await dal.executeAsync(sql);
     return order;
 }
-// (clientID,cartID,subTotal,shippingCity,shippingStreet,shippingDate,orderTime,paymentDigits)
 async function addOrder(order) {
-    console.log(order)
-    // const sql = `INSERT INTO clientOrder (clientID,cartID,subTotal,shippingCity,shippingStreet,
-    //     shippingDate,paymentDigits, orderTime) VALUES(DEFAULT,  ?, ? ,? ,? ,? ,? ,? ,?)`;
-        const sql = `INSERT INTO clientOrder (clientID,cartID,subTotal,shippingCity,shippingStreet,shippingDate,orderTime,paymentDigits) VALUES (DEFAULT, ${order.clientID},${order.cartID},${order.subTotal}, ${order.clientID},${order.clientID},'${order.shippingCity}','${order.shippingStreet}', '${order.shippingDate}', '${order.orderTime}', ${order.paymentDigits}) `;
+    console.log(order);
+    const sql = `INSERT INTO clientOrder ( clientID, cartID, subTotal, shippingCity, shippingStreet, shippingDate, orderTime, paymentDigits) VALUES ( ${order.clientID}, ${order.cartID}, ${order.subTotal}, '${order.shippingCity}', '${order.shippingStreet}', '${order.shippingDate}', '${order.orderTime}', ${order.paymentDigits})`;
    const newCart = await dal.executeAsync(sql);
-    // const newCart = await dal.executeAsync(sql, [
-    //     order.clientID,
-    //     order.cartID,
-    //     order.subTotal,
-    //     order.shippingCity,
-    //     order.shippingStreet,
-    //     order.shippingDate,
-    //     order.paymentDigits,
-    //     order.orderTime
-    // ]);
     return newCart;
 }
+
+
 
 module.exports = {
     getAllOrders,

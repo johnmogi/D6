@@ -2,6 +2,10 @@
   min-height: 75vh;
 }
 
+.full-width {
+  width: 100%;
+}
+
 .spacer {
   -webkit-box-flex: 1;
       -ms-flex: 1;
@@ -28,6 +32,12 @@ li.col {
 
 .mat-button {
   padding: 0 4px !important;
+}
+
+td {
+  min-width: 10%;
+  text-align: center;
+  padding: 5px;
 }
 
 /* UI */
@@ -89,5 +99,14 @@ app-footer .mat-drawer-container {
 .mat-toolbar-row {
   background: url(/assets/images/pencil-typography-black-design.jpg);
   background-size: cover;
+}
+
+.container .mat-form-field {
+  min-width: 235px !important;
+}
+
+.occupied-date-class {
+  background: orange;
+  border-radius: 100%;
 }
 /*# sourceMappingURL=main.css.map */
